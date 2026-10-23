@@ -1,0 +1,92 @@
+/* ===== Variáveis (cores) ===== */
+:root{--bg:#ffffff;--surface:#f4f6f4;--ink:#10223a;--muted:#51607a;--line:#d3d9d4;--red:#c8302b;--blue:#2c5c9e;--wa:#0f7a40;--wa-ink:#ffffff;color-scheme:light}
+
+/* ===== Base ===== */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+p{margin:0}
+h1,h2,h3{margin:0;font-stretch:75%;font-weight:800;line-height:1;letter-spacing:-.01em}
+h2{font-size:clamp(2.2rem,6vw,3.4rem);margin-bottom:12px}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+.wrap{width:min(1080px,100% - 2.5rem);margin-inline:auto}
+section{padding:72px 0}
+.lead{color:var(--muted);max-width:52ch;margin-bottom:32px}
+
+/* ===== Botões ===== */
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;background:var(--wa);color:var(--wa-ink);font-weight:700;font-size:17px}
+.btn svg{width:22px;height:22px;fill:currentColor}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.btn.small{min-height:44px;padding:0 18px;font-size:15px}
+.btn.big{min-height:56px;padding:0 28px;font-size:18px}
+
+/* ===== Topo ===== */
+header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:inline-flex;align-items:center;min-height:44px;font-stretch:75%;font-weight:900;font-size:24px}
+nav{display:flex;align-items:center;gap:24px}
+nav a:not(.btn){display:inline-flex;align-items:center;min-height:44px;font-weight:600;color:var(--muted)}
+
+/* ===== Hero ===== */
+.hero{padding:56px 0 64px}
+.hero .wrap{display:flex;flex-wrap:wrap;gap:48px;align-items:center}
+.hero-text{flex:1 1 480px;min-width:0}
+h1{font-size:clamp(3.2rem,9vw,6.2rem);text-wrap:balance}
+.sub{font-size:19px;color:var(--muted);max-width:44ch;margin:20px 0 32px}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.status{display:flex;align-items:center;gap:8px;margin-top:24px;font-weight:600;color:var(--muted)}
+.status b{width:10px;height:10px;border-radius:50%;background:var(--wa)}
+
+/* quadro de pedidos (kanban) */
+.board{flex:1 1 320px;min-width:0;max-width:420px;margin-inline:auto;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px}
+.board-title{font-stretch:75%;font-weight:800;font-size:20px;margin-bottom:14px}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.col-title{font-stretch:75%;font-weight:800;font-size:15px;margin-bottom:8px}
+.col-title.novos{color:var(--red)}
+.col-title.prontos{color:var(--blue)}
+.ticket{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px;margin-bottom:8px}
+.ticket span{color:var(--muted)}
+
+/* ===== Faixa de destaques ===== */
+.proof{background:var(--surface);border-block:1px solid var(--line)}
+.proof .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding:24px 0}
+.proof strong{display:block;font-stretch:75%;font-weight:800;font-size:30px;line-height:1}
+.proof span{color:var(--muted);font-size:15px}
+
+/* ===== Serviços ===== */
+.menu{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.menu li{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;padding:18px 24px}
+.menu li+li{border-top:1px solid var(--line)}
+.menu li.hot{background:linear-gradient(90deg,color-mix(in srgb,var(--red) 10%,transparent),transparent 60%)}
+.menu .info{flex:1 1 280px;min-width:0}
+.menu h3{font-stretch:80%;font-size:26px}
+.menu small{display:block;margin-top:6px;color:var(--muted);font-size:15px}
+.tag{display:inline-block;margin-left:8px;padding:2px 10px;border-radius:99px;background:var(--red);color:#fff;font-size:12px;font-weight:700;font-stretch:100%;vertical-align:middle}
+.price{font-stretch:75%;font-weight:800;font-size:22px;color:var(--muted);white-space:nowrap}
+.hot .price{font-size:26px;color:var(--ink)}
+.book{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--wa)}
+
+/* ===== Como funciona ===== */
+.how{background:var(--surface);border-block:1px solid var(--line)}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;counter-reset:s}
+.steps li{counter-increment:s;border-top:4px solid var(--ink);padding-top:16px}
+.steps li:nth-child(1){border-color:var(--red)}
+.steps li:nth-child(3){border-color:var(--blue)}
+.steps li::before{content:counter(s);display:block;font-stretch:75%;font-weight:900;font-size:38px;line-height:1}
+.steps h3{font-stretch:80%;font-size:26px;line-height:1.05;margin:6px 0}
+.steps p{color:var(--muted)}
+
+/* ===== Bloco final ===== */
+.final{background:var(--ink);color:var(--bg)}
+.final h2{font-size:clamp(2.4rem,7vw,4.4rem);max-width:14ch;margin-bottom:14px}
+.final .lead{color:color-mix(in srgb,var(--bg) 75%,transparent);margin-bottom:28px}
+footer{padding:24px 0 96px;color:var(--muted);font-size:14px}
+
+/* ===== Barra fixa no celular ===== */
+.sticky{display:none}
+@media (max-width:760px){
+  nav a:not(.btn){display:none}
+  .sticky{display:block;position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
+  .sticky .btn{width:100%;justify-content:center}
+}
