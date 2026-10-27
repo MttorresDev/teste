@@ -55,7 +55,7 @@ var SEGMENTOS = [
       { t: "Estoque", tipo: "niveis", itens: [["Arroz", 80], ["Frango", 28, 1], ["Tomate", 55], ["Óleo", 18, 1]] },
       { t: "Produtos", tipo: "tabela", pill: 1, th: ["Prato", "Preço", "Status"], linhas: [["Feijoada", "R$ 42", "Ativo"], ["Parmegiana", "R$ 38", "Ativo"], ["Salada da casa", "R$ 24", "Pausado"]] }
     ] },
-  { id: "barbearia", nome: "Barbearias", desc: "Agenda, clientes e operação",
+  { id: "barbearia", nome: "iBarberHub", desc: "Agenda, clientes e operação",
     msg: "Olá! Quero conhecer uma solução de gestão para barbearias.",
     res: "Agenda, clientes e comissões sem planilha.",
     menu: ["Agenda", "Clientes", "Equipe", "Comissões"],
