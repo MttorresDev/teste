@@ -1,10 +1,14 @@
-/* ===== Variáveis (cores) ===== */
-:root{--bg:#ffffff;--surface:#f4f6f4;--ink:#10223a;--muted:#51607a;--line:#d3d9d4;--red:#c8302b;--blue:#2c5c9e;--wa:#0f7a40;--wa-ink:#ffffff;color-scheme:light}
+/* VARIÁVEIS DE COR: mude a cor da marca aqui e o site inteiro acompanha. --wa é o verde do WhatsApp. env(safe-area-inset-*) evita que o entalhe do iPhone cubra o conteúdo. */
+:root{--bg:#ffffff;--surface:#f4f6f4;--ink:#10223a;--muted:#51607a;--line:#d3d9d4;--red:#c8302b;--blue:#2c5c9e;--wa:#0f7a40;--wa-ink:#ffffff;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 
 /* ===== Base ===== */
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
+/* Ao ir para uma âncora (#solucoes), deixa uma folga para o cabeçalho fixo não cobrir o título. */
+html{scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+/* Faixa branca sob a barra de status do celular (área segura). No computador tem altura 0. */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:25;background:var(--bg)}
 a{color:inherit;text-decoration:none}
 p{margin:0}
 h1,h2,h3{margin:0;font-stretch:75%;font-weight:800;line-height:1;letter-spacing:-.01em}
@@ -22,7 +26,7 @@ section{padding:72px 0}
 .btn.big{min-height:56px;padding:0 28px;font-size:18px}
 
 /* ===== Topo ===== */
-header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
 .bar{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .logo{display:inline-flex;align-items:center;min-height:44px;font-stretch:75%;font-weight:900;font-size:24px}
 nav{display:flex;align-items:center;gap:24px}
@@ -37,8 +41,6 @@ h1{font-size:clamp(3.2rem,9vw,6.2rem);text-wrap:balance}
 .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
 .status{display:flex;align-items:center;gap:8px;margin-top:24px;font-weight:600;color:var(--muted)}
 .status b{width:10px;height:10px;border-radius:50%;background:var(--wa)}
-
-/* quadro de pedidos (kanban) */
 .board{flex:1 1 320px;min-width:0;max-width:420px;margin-inline:auto;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px}
 .board-title{font-stretch:75%;font-weight:800;font-size:20px;margin-bottom:14px}
 .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -48,24 +50,91 @@ h1{font-size:clamp(3.2rem,9vw,6.2rem);text-wrap:balance}
 .ticket{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px;margin-bottom:8px}
 .ticket span{color:var(--muted)}
 
-/* ===== Faixa de destaques ===== */
+/* ===== Benefícios ===== */
 .proof{background:var(--surface);border-block:1px solid var(--line)}
 .proof .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding:24px 0}
 .proof strong{display:block;font-stretch:75%;font-weight:800;font-size:30px;line-height:1}
 .proof span{color:var(--muted);font-size:15px}
 
-/* ===== Serviços ===== */
-.menu{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden}
-.menu li{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;padding:18px 24px}
-.menu li+li{border-top:1px solid var(--line)}
-.menu li.hot{background:linear-gradient(90deg,color-mix(in srgb,var(--red) 10%,transparent),transparent 60%)}
-.menu .info{flex:1 1 280px;min-width:0}
-.menu h3{font-stretch:80%;font-size:26px}
-.menu small{display:block;margin-top:6px;color:var(--muted);font-size:15px}
-.tag{display:inline-block;margin-left:8px;padding:2px 10px;border-radius:99px;background:var(--red);color:#fff;font-size:12px;font-weight:700;font-stretch:100%;vertical-align:middle}
-.price{font-stretch:75%;font-weight:800;font-size:22px;color:var(--muted);white-space:nowrap}
-.hot .price{font-size:26px;color:var(--ink)}
-.book{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--wa)}
+/* ===== Soluções: acordeão ===== */
+/* ACORDEÃO: .menu é a lista; cada <li> é um cartão com a barra (botão) e a gaveta (conteúdo). */
+.menu{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+/* Cada cartão. overflow:hidden recorta a gaveta nos cantos arredondados. */
+.menu li{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.menu li.hot{background:linear-gradient(90deg,color-mix(in srgb,var(--red) 10%,var(--surface)),var(--surface) 60%)}
+.menu li.open{border-color:var(--blue);box-shadow:0 6px 24px rgb(16 34 58/.08)}
+/* A barra é um <button> de verdade (funciona com teclado e leitor de tela). all:unset remove o visual padrão do botão para estilizarmos do zero. */
+.svc{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;gap:16px;padding:18px 20px;cursor:pointer}
+.svc:hover{background:color-mix(in srgb,var(--blue) 6%,transparent)}
+.svc:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
+.num{font-stretch:75%;font-weight:900;font-size:22px;color:var(--red);min-width:2ch}
+.svc .info{flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px}
+.name{font-stretch:80%;font-weight:800;font-size:26px;line-height:1.1}
+.desc{color:var(--muted);font-size:15px}
+.tag{padding:2px 10px;border-radius:99px;background:var(--red);color:#fff;font-size:12px;font-weight:700}
+.more{color:var(--muted);font-weight:600;font-size:14px}
+/* Bolinha da seta. A transition faz a rotação ser suave (0,22 s). */
+.chev{flex:none;width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:var(--bg);transition:transform .22s ease,background .22s,color .22s}
+/* A seta é desenhada só com CSS: um quadrado com duas bordas, girado 45 graus. Sem imagem. */
+.chev::before{content:"";width:9px;height:9px;border:solid currentColor;border-width:0 2.5px 2.5px 0;transform:translateY(-2px) rotate(45deg)}
+/* Quando o JS marca aria-expanded="true", o CSS gira a seta 180 graus e inverte as cores. O visual segue o mesmo atributo que o leitor de tela lê. */
+.svc[aria-expanded="true"] .chev{transform:rotate(180deg);background:var(--ink);color:var(--bg)}
+/* GAVETA, truque de animação de altura: grid-template-rows vai de 0fr (fechada) a 1fr (aberta) e o navegador anima isso. visibility:hidden tira o conteúdo fechado da navegação por teclado; o atraso de .22s espera a animação acabar. */
+.drawer{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .22s ease,visibility 0s .22s}
+/* Estado aberto: a linha passa a ocupar 1fr (a altura natural do conteúdo) e fica visível na hora. */
+.open .drawer{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .22s ease,visibility 0s}
+/* min-height:0 e overflow:hidden permitem que a gaveta encolha até zero sem vazar conteúdo. */
+.drawer-in{min-height:0;overflow:hidden}
+/* Acessibilidade: quem pediu menos movimento no sistema não vê animações. */
+@media (prefers-reduced-motion:reduce){.drawer,.open .drawer,.chev,.menu li{transition:none}}
+
+/* ===== Prévias ilustrativas (painel SaaS) ===== */
+/* PRÉVIAS: o painel de sistema de mentira, feito só com HTML e CSS. */
+.pv{padding:20px;border-top:1px solid var(--line)}
+.pv-note{display:inline-block;margin-bottom:8px;padding:2px 10px;border:1px dashed var(--muted);border-radius:99px;font-size:12px;font-weight:700;color:var(--muted)}
+.pv-res{font-weight:600;margin-bottom:14px}
+/* Moldura da "janela" do sistema. */
+.app{background:var(--bg);border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 10px rgb(16 34 58/.06);overflow:hidden}
+.app-top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding:12px 16px;background:var(--surface);border-bottom:1px solid var(--line)}
+.app-top b{font-stretch:75%;font-weight:900;font-size:18px}
+.app-nav{display:flex;flex-wrap:wrap;gap:6px}
+.app-nav span{padding:4px 10px;border-radius:99px;font-size:13px;font-weight:600;color:var(--muted)}
+.app-nav span:first-child{background:var(--ink);color:var(--bg)}
+.app-search{margin-left:auto;padding:4px 12px;border:1px solid var(--line);border-radius:99px;background:var(--bg);font-size:13px;color:var(--muted)}
+.app-body{display:grid;gap:16px;padding:16px}
+/* Cartões de números. auto-fit + minmax: o navegador decide quantas colunas cabem, sem precisar de media query. */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.kpi{padding:12px;border:1px solid var(--line);border-radius:12px}
+.kpi small{display:block;font-size:13px;color:var(--muted)}
+.kpi strong{font-stretch:75%;font-weight:800;font-size:26px;line-height:1.1}
+.blocos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.bloco{min-width:0;padding:14px;border:1px solid var(--line);border-radius:12px}
+.bloco h4{margin:0 0 10px;font-stretch:80%;font-weight:800;font-size:17px}
+/* Quadro kanban com 3 colunas iguais. minmax(0,1fr) impede que uma coluna estoure a largura. */
+.kan{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.kan h5{margin:0 0 6px;font-size:13px}
+/* Tabelas largas rolam para o lado dentro da própria caixa, sem criar rolagem na página inteira. */
+.scroll{overflow-x:auto}
+table{width:100%;min-width:320px;border-collapse:collapse;font-size:14px}
+th{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;font-weight:600;color:var(--muted)}
+td{padding:8px;border-bottom:1px solid var(--line);white-space:nowrap}
+.pill{display:inline-block;padding:1px 9px;border-radius:99px;font-size:12px;font-weight:700;background:color-mix(in srgb,var(--blue) 14%,transparent);color:var(--blue)}
+.pill.ok{background:color-mix(in srgb,var(--wa) 14%,transparent);color:var(--wa)}
+.pill.red{background:color-mix(in srgb,var(--red) 14%,transparent);color:var(--red)}
+/* Barrinha de progresso: nome | barra | porcentagem. */
+.meter{display:grid;grid-template-columns:84px 1fr 42px;gap:8px;align-items:center;margin-bottom:8px;font-size:13px}
+.meter i{position:relative;display:block;height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+/* A largura do preenchimento vem da variável --v, que o JS define em cada barrinha. */
+.meter i::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--v);background:var(--blue);border-radius:inherit}
+.meter.low i::after{background:var(--red)}
+.chart{display:flex;align-items:flex-end;gap:6px;height:110px}
+/* Colunas do gráfico: a altura de cada uma vem de --v. */
+.chart span{flex:1;height:var(--v);background:var(--blue);border-radius:6px 6px 0 0;opacity:.85}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{padding:4px 12px;border:1px solid var(--line);border-radius:99px;font-size:14px;font-weight:600}
+.pv-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:16px}
+.pv-cta p{flex:1 1 220px;font-size:14px;color:var(--muted)}
+@media (max-width:560px){.more{display:none}.name{font-size:23px}.svc{padding:16px}.pv{padding:14px}}
 
 /* ===== Como funciona ===== */
 .how{background:var(--surface);border-block:1px solid var(--line)}
@@ -77,16 +146,29 @@ h1{font-size:clamp(3.2rem,9vw,6.2rem);text-wrap:balance}
 .steps h3{font-stretch:80%;font-size:26px;line-height:1.05;margin:6px 0}
 .steps p{color:var(--muted)}
 
-/* ===== Bloco final ===== */
+/* ===== Bloco final e rodapé ===== */
 .final{background:var(--ink);color:var(--bg)}
 .final h2{font-size:clamp(2.4rem,7vw,4.4rem);max-width:14ch;margin-bottom:14px}
 .final .lead{color:color-mix(in srgb,var(--bg) 75%,transparent);margin-bottom:28px}
+/* O padding-bottom grande evita que a barra fixa do celular cubra o rodapé. */
 footer{padding:24px 0 96px;color:var(--muted);font-size:14px}
 
 /* ===== Barra fixa no celular ===== */
+/* Barra fixa de WhatsApp: escondida no computador; só aparece no celular (regra no @media logo abaixo). */
 .sticky{display:none}
 @media (max-width:760px){
   nav a:not(.btn){display:none}
   .sticky{display:block;position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
   .sticky .btn{width:100%;justify-content:center}
 }
+
+/* ===== Planos ===== */
+/* PLANOS: cartão com nome, preço e lista de recursos. */
+.plano{padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--bg)}
+.plano-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
+.plano-top b{font-stretch:75%;font-weight:900;font-size:24px}
+.plano-preco{font-stretch:75%;font-weight:800;font-size:20px;color:var(--muted)}
+.recursos{display:grid;gap:8px}
+.recursos p{display:flex;gap:10px;align-items:baseline}
+/* O símbolo de check vem do CSS (código \2713), não precisa de ícone. */
+.recursos p::before{content:"\2713";color:var(--wa);font-weight:900}

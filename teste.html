@@ -2,36 +2,41 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>TwoTT Group — Software de gestão para o seu negócio</title>
 <meta name="description" content="Software de gestão para restaurantes, barbearias, clínicas e postos. Conheça o iChefLab e agende uma conversa pelo WhatsApp.">
+<!-- Fonte Archivo, do Google Fonts. O preconnect acelera o carregamento. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<!-- Estilos do site. O arquivo precisa estar na mesma pasta deste HTML. -->
 <link rel="stylesheet" href="teste.css">
 </head>
 <body id="topo">
 
+<!-- CABEÇALHO fixo no topo: logo, links de âncora (#id leva até a seção com esse id) e botão de WhatsApp. O href do WhatsApp aqui é o plano B; o JS troca por um link com mensagem. -->
 <header>
   <div class="wrap bar">
     <a class="logo" href="#topo">TwoTT Group</a>
     <nav>
-      <a href="#servicos">Serviços</a>
+      <a href="#solucoes">Soluções</a>
       <a href="#como">Como funciona</a>
+      <a href="#planos">Planos</a>
       <a class="btn small wa" href="https://wa.me/5581998118079">Agendar</a>
     </nav>
   </div>
 </header>
 
 <main>
+<!-- SEÇÃO INICIAL: título, chamada e mini quadro do iChefLab (decorativo). -->
 <section class="hero">
   <div class="wrap">
     <div class="hero-text">
       <h1>Uma visão. Infinitas possibilidades.</h1>
       <p class="sub">Software de gestão para restaurantes, barbearias, clínicas e postos. Comece pelo iChefLab e tenha pedidos e estoque em um só lugar.</p>
       <div class="cta-row">
-        <a class="btn wa" href="https://wa.me/5581998118079"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.300 1.200-1.800 1.200-.5.1-1 .2-3.300-.7-2.800-1.200-4.600-4-4.700-4.200-.1-.2-1.100-1.500-1.100-2.800s.7-2 1-2.300c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 2c.1.200.1.300 0 .5l-.4.600c-.2.200-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.100 1 2 1.300 2.300 1.400.3.100.5.100.6-.1l.9-1c.2-.3.400-.2.600-.1l1.900.9c.3.100.5.200.5.300.100.100.100.700-.1 1.300Z"/></svg> Agendar pelo WhatsApp</a>
-        <a class="btn ghost" href="#servicos">Ver serviços</a>
+        <a class="btn wa" href="https://wa.me/5581998118079"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.7-.1 1.3Z"/></svg> Agendar pelo WhatsApp</a>
+        <a class="btn ghost" href="#solucoes">Ver soluções</a>
       </div>
       <p class="status"><b></b>Atendimento direto pelo WhatsApp</p>
     </div>
@@ -50,54 +55,65 @@
   </div>
 </section>
 
+<!-- FAIXA DE BENEFÍCIOS: três destaques lado a lado. -->
 <div class="proof">
   <div class="wrap">
-    <div><strong>iChefLab</strong><span>sistema para restaurantes, em desenvolvimento</span></div>
+    <div><strong>Menos tarefas</strong><span>rotina organizada e menos trabalho manual</span></div>
+    <div><strong>Mais controle</strong><span>pedidos, caixa e estoque em um só lugar</span></div>
     <div><strong>4 planos</strong><span>Start, Pro, Business e Franquia</span></div>
-    <div><strong>WhatsApp</strong><span>conversa direta, sem burocracia</span></div>
   </div>
 </div>
 
-<section id="servicos">
+<!-- SOLUÇÕES: a lista abaixo está vazia de propósito. O teste.js cria as 6 barras (acordeão) a partir dos dados SEGMENTOS. -->
+<section id="solucoes">
   <div class="wrap">
-    <h2>Nossos serviços</h2>
-    <p class="lead">Uma base de tecnologia, vários segmentos. Começamos pelos restaurantes. Toque em “Conversar” e a mensagem já sai pronta.</p>
-    <ul class="menu">
-      <li class="hot"><div class="info"><h3>iChefLab<span class="tag">Em desenvolvimento</span></h3><small>Pedidos em kanban, controle de estoque e produtos organizados.</small></div><span class="price">Em breve</span><a class="book wa" data-msg="Olá! Quero conhecer o iChefLab." href="https://wa.me/5581998118079">Conversar</a></li>
-      <li><div class="info"><h3>Barbearias</h3><small>Agenda online, comissão por profissional e controle do caixa.</small></div><span class="price">Em breve</span><a class="book wa" data-msg="Olá! Tenho uma barbearia e quero saber mais." href="https://wa.me/5581998118079">Conversar</a></li>
-      <li><div class="info"><h3>Clínicas</h3><small>Agendamento de consultas e organização do atendimento.</small></div><span class="price">Em breve</span><a class="book wa" data-msg="Olá! Tenho uma clínica e quero saber mais." href="https://wa.me/5581998118079">Conversar</a></li>
-      <li><div class="info"><h3>Postos</h3><small>Controle de caixa, estoque e rotina da operação.</small></div><span class="price">Em breve</span><a class="book wa" data-msg="Olá! Tenho um posto e quero saber mais." href="https://wa.me/5581998118079">Conversar</a></li>
-      <li><div class="info"><h3>Supermercado</h3><small>Conte o que o seu negócio precisa e vemos juntos.</small></div><span class="price">Em breve</span><a class="book wa" data-msg="Olá! Tenho um negócio e quero conversar sobre um sistema." href="https://wa.me/5581998118079">Conversar</a></li>
-     <li><div class="info"><h3>Outro segmento</h3><small>Conte o que o seu negócio precisa e vemos juntos.</small></div><span class="price">Sob consulta</span><a class="book wa" data-msg="Olá! Tenho um negócio e quero conversar sobre um sistema." href="https://wa.me/5581998118079">Conversar</a></li>
-    </ul>
+    <h2>Soluções</h2>
+    <p class="lead">Uma base de tecnologia, vários segmentos. Toque em uma solução para ver uma prévia ilustrativa.</p>
+    <ul class="menu" id="menu"></ul>
+    <!-- Aviso para quem está com o JavaScript desligado. -->
+    <noscript><p class="lead">Ative o JavaScript para ver as prévias ou fale com a gente pelo WhatsApp.</p></noscript>
   </div>
 </section>
 
+<!-- COMO FUNCIONA: lista numerada (ol). Os números grandes vêm do CSS (counter). -->
 <section id="como" class="how">
   <div class="wrap">
-    <h2>Começar leva um minuto</h2>
+    <h2>Como funciona</h2>
     <p class="lead">Sem cadastro e sem burocracia.</p>
     <ol class="steps">
-      <li><h3>Mande uma mensagem</h3><p>Toque no botão e conte como o seu negócio funciona hoje.</p></li>
-      <li><h3>Veja a demonstração</h3><p>Mostramos o sistema funcionando e indicamos o plano ideal.</p></li>
-      <li><h3>Comece a usar</h3><p>Colocamos para rodar e acompanhamos a evolução com você.</p></li>
+      <li><h3>Entendemos a sua necessidade</h3><p>Conversamos sobre como o seu negócio funciona hoje e onde dá para ganhar tempo.</p></li>
+      <li><h3>Construímos a solução</h3><p>Montamos o sistema com o que a sua operação precisa e mostramos funcionando.</p></li>
+      <li><h3>Evoluímos o produto</h3><p>Acompanhamos o uso e melhoramos o sistema junto com você.</p></li>
     </ol>
   </div>
 </section>
 
+<!-- PLANOS: mesma ideia das Soluções; o JS preenche a lista a partir dos dados PLANOS. -->
+<section id="planos">
+  <div class="wrap">
+    <h2>Planos</h2>
+    <p class="lead">Quatro planos para acompanhar o tamanho da sua operação. Toque em um plano para ver o que ele inclui.</p>
+    <ul class="menu" id="menu-planos"></ul>
+  </div>
+</section>
+
+<!-- CHAMADA FINAL para o WhatsApp. -->
 <section class="final">
   <div class="wrap">
     <h2>Vamos conversar sobre o seu negócio?</h2>
     <p class="lead">Agende uma conversa rápida pelo WhatsApp e descubra como a TwoTT Group pode organizar a sua operação.</p>
-    <a class="btn big wa" href="https://wa.me/5581998118079"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.300 1.200-1.800 1.200-.5.1-1 .2-3.300-.7-2.800-1.200-4.600-4-4.700-4.200-.1-.2-1.100-1.500-1.100-2.800s.7-2 1-2.300c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 2c.1.200.1.300 0 .5l-.4.600c-.2.200-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.100 1 2 1.300 2.300 1.400.3.100.5.100.6-.1l.9-1c.2-.3.400-.2.600-.1l1.900.9c.3.100.5.200.5.300.100.100.100.700-.1 1.300Z"/></svg> Agendar pelo WhatsApp</a>
+    <a class="btn big wa" href="https://wa.me/5581998118079"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.7-.1 1.3Z"/></svg> Agendar pelo WhatsApp</a>
   </div>
 </section>
 </main>
 
+<!-- RODAPÉ. O espaço extra embaixo (no CSS) é por causa da barra fixa do celular. -->
 <footer><div class="wrap">© 2026 TwoTT Group. Todos os direitos reservados.</div></footer>
 
+<!-- BARRA FIXA de WhatsApp. O CSS a mostra só no celular. -->
 <div class="sticky"><a class="btn wa" href="https://wa.me/5581998118079">Agendar pelo WhatsApp</a></div>
 
+<!-- O JS vem por último para o HTML já existir quando o código procurar os elementos. -->
 <script src="teste.js"></script>
 </body>
 </html>
